@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Likes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="text-center mb-5">Posts and Likes</h1>
+    {% for entry in posts_with_likes %}
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5>{{ entry.username }}'s Post</h5>
+            </div>
+            <div class="card-body">
+                <p class="card-text">{{ entry.post_content }}</p>
+                <h6>Liked By:</h6>
+                {% if entry.liked_by %}
+                    <ul class="list-group list-group-flush">
+                        {% for liker in entry.liked_by %}
+                            <li class="list-group-item">{{ liker }}</li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No likes yet.</p>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
